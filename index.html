@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web Chat App</title>
+  <style>
+    #chatbox {
+      width: 400px;
+      height: 300px;
+      border: 1px solid #ccc;
+      overflow-y: scroll;
+      padding: 10px;
+    }
+    
+    #message {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="chatbox"></div>
+  <form id="chatForm">
+    <input type="text" id="messageInput" placeholder="メッセージを入力してください" />
+    <button type="submit">送信</button>
+  </form>
+
+  <script>
+    const chatbox = document.getElementById('chatbox');
+    const chatForm = document.getElementById('chatForm');
+    const messageInput = document.getElementById('messageInput');
+
+    chatForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const message = messageInput.value;
+      displayMessage(message);
+      messageInput.value = '';
+    });
+
+    function displayMessage(message) {
+      const messageElement = document.createElement('div');
+      messageElement.textContent = message;
+      chatbox.appendChild(messageElement);
+      chatbox.scrollTop = chatbox.scrollHeight; // チャットボックスを自動的にスクロールする
+    }
+  </script>
+</body>
+</html>
